@@ -96,6 +96,7 @@ def filtrar_por_dificultad(matriz: list, columnas: list, dificultad: str) -> lis
 
 
 def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> list:
+def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> list:
     inidice_preguntas = -1
     for i in range(len(columnas)):
         if columnas[i] == palabra_clave:
@@ -129,6 +130,10 @@ def capitalizar_primera_letra(texto: str) -> str:
 
 # matriz, columnas = llamar_csv()
 # facil = filtrar_por_dificultad(matriz, columnas, "fácil")
+# # # mostrar_mariz(matriz)
+# # # for i in range(len(facil)):
+# # #     print(facil[i])
+# preguntas = filtrar_columna_clave(facil, columnas,"opciones")
 # # # mostrar_mariz(matriz)
 # # # for i in range(len(facil)):
 # # #     print(facil[i])
