@@ -95,10 +95,10 @@ def filtrar_por_dificultad(matriz: list, columnas: list, dificultad: str) -> lis
     return filtradas
 
 
-def filtrar_solo_preguntas(lista_ya_filtrada, columnas: list) -> list:
+def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> list:
     inidice_preguntas = -1
     for i in range(len(columnas)):
-        if columnas[i] == "pregunta":
+        if columnas[i] == palabra_clave:
             inidice_preguntas = i
             break
     preguntas = []
@@ -107,12 +107,32 @@ def filtrar_solo_preguntas(lista_ya_filtrada, columnas: list) -> list:
         preguntas += [lista_ya_filtrada[i][inidice_preguntas]]
     return preguntas
 
+def capitalizar_primera_letra(texto: str) -> str:
+    # Eliminar espacios al principio
+    inicio = 0
+    while inicio < len(texto) and texto[inicio] == " ":
+        inicio += 1
+    # Eliminar espacios al final
+    fin = len(texto) - 1
+    while fin >= 0 and texto[fin] == " ":
+        fin -= 1
+    # Si el string está vacío después de quitar espacios
+    if inicio > fin:
+        return ""
+    texto_sin_espacios = texto[inicio:fin+1]
+    # Convertir primera letra a mayúscula si es letra
+    primera = texto_sin_espacios[0]
+    codigo = ord(primera)
+    if 97 <= codigo <= 122:  # a-z
+        primera = chr(codigo - 32)
+    return primera + texto_sin_espacios[1:]
 
 # matriz, columnas = llamar_csv()
 # facil = filtrar_por_dificultad(matriz, columnas, "fácil")
-# mostrar_mariz(matriz)
-# for i in range(len(facil)):
-#     print(facil[i])
-# preguntas = filtrar_solo_preguntas(facil, columnas)
+# # # mostrar_mariz(matriz)
+# # # for i in range(len(facil)):
+# # #     print(facil[i])
+# preguntas = filtrar_columna_clave(facil, columnas,"opciones")
 # for i in range(len(preguntas)):
-#    print(preguntas[i])
+#     print(preguntas[0])
+
