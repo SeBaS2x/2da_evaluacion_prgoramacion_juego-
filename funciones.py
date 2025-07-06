@@ -96,7 +96,6 @@ def filtrar_por_dificultad(matriz: list, columnas: list, dificultad: str) -> lis
 
 
 def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> list:
-def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> list:
     inidice_preguntas = -1
     for i in range(len(columnas)):
         if columnas[i] == palabra_clave:
@@ -107,6 +106,7 @@ def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> l
     for i in range(len(lista_ya_filtrada)):
         preguntas += [lista_ya_filtrada[i][inidice_preguntas]]
     return preguntas
+
 
 def capitalizar_primera_letra(texto: str) -> str:
     # Eliminar espacios al principio
@@ -120,7 +120,7 @@ def capitalizar_primera_letra(texto: str) -> str:
     # Si el string está vacío después de quitar espacios
     if inicio > fin:
         return ""
-    texto_sin_espacios = texto[inicio:fin+1]
+    texto_sin_espacios = texto[inicio : fin + 1]
     # Convertir primera letra a mayúscula si es letra
     primera = texto_sin_espacios[0]
     codigo = ord(primera)
@@ -128,16 +128,27 @@ def capitalizar_primera_letra(texto: str) -> str:
         primera = chr(codigo - 32)
     return primera + texto_sin_espacios[1:]
 
+
+def respuestas_correctas(matriz: list) -> list:
+    respuestas = []
+    for fila in matriz:
+        respuestas += [fila[2]]
+    return respuestas
+
+
+def calcular_puntaje(matriz: list, respuestas_usuario: list) -> int:
+    total = 0
+    for i in range(len(matriz)):
+        if respuestas_usuario[i].strip().lower() == matriz[i][2].strip().lower():
+            total += matriz[i][4]
+    return total
+
+
 # matriz, columnas = llamar_csv()
 # facil = filtrar_por_dificultad(matriz, columnas, "fácil")
 # # # mostrar_mariz(matriz)
 # # # for i in range(len(facil)):
 # # #     print(facil[i])
 # preguntas = filtrar_columna_clave(facil, columnas,"opciones")
-# # # mostrar_mariz(matriz)
-# # # for i in range(len(facil)):
-# # #     print(facil[i])
-# preguntas = filtrar_columna_clave(facil, columnas,"opciones")
 # for i in range(len(preguntas)):
 #     print(preguntas[0])
-
