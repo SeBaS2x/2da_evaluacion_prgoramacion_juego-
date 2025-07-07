@@ -10,6 +10,7 @@ def main() -> None:
     matriz, columnas = llamar_csv()
     opciones = input("ingrese la dificultad: ")
     preguntas = 7
+    vidas = 3
     match (opciones):
         case "1":
             matriz_filtrada_dificultad = filtrar_por_dificultad(
@@ -29,8 +30,12 @@ def main() -> None:
                 for j in range(len(opciones_separadas)):
                     print(f"{j+1}. {opciones_separadas[j]}")
                 respuesta = input("Elige una opción: ")
-
                 respuestas_usuario[i] = respuesta
+            if validar_respuesta(respuesta, opciones): #aca la validacion 
+                print("Respuesta válida")
+            else:
+                print("Respuesta inválida\n","Pierdes una vida")
+                vidas -= 1
         case "2":
             matriz_filtrada_dificultad = filtrar_por_dificultad(
                 matriz, columnas, "normal"

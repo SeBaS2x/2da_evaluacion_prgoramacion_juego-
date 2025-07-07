@@ -109,19 +109,19 @@ def filtrar_columna_clave(lista_ya_filtrada, columnas: list, palabra_clave) -> l
 
 
 def capitalizar_primera_letra(texto: str) -> str:
-    # Eliminar espacios al principio
+    
     inicio = 0
     while inicio < len(texto) and texto[inicio] == " ":
         inicio += 1
-    # Eliminar espacios al final
+    
     fin = len(texto) - 1
     while fin >= 0 and texto[fin] == " ":
         fin -= 1
-    # Si el string está vacío después de quitar espacios
+  
     if inicio > fin:
         return ""
     texto_sin_espacios = texto[inicio : fin + 1]
-    # Convertir primera letra a mayúscula si es letra
+    
     primera = texto_sin_espacios[0]
     codigo = ord(primera)
     if 97 <= codigo <= 122:  # a-z
@@ -142,7 +142,19 @@ def calcular_puntaje(matriz: list, respuestas_usuario: list) -> int:
         if respuestas_usuario[i].strip().lower() == matriz[i][2].strip().lower():
             total += matriz[i][4]
     return total
+def validar_respuesta(respuesta: str, opciones: list) -> bool:      
+    """Valida si la respuesta del usuario es correcta
 
+    Args:
+        respuesta (str): Respuesta del usuario
+        opciones (list): Lista de opciones correctas
+
+    Returns:
+        bool: True si la respuesta es correcta, False si no lo es
+    """
+    opciones_separadas = opciones.split("|")
+    return respuesta.strip().lower() in [opcion.strip().lower() for opcion in opciones_separadas]
+    
 
 # matriz, columnas = llamar_csv()
 # facil = filtrar_por_dificultad(matriz, columnas, "fácil")
